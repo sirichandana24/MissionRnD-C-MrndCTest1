@@ -70,6 +70,11 @@ int merge_circularlists(struct node **head1, struct node **head2){
 		*temp2 = (*temp2)->next;
 	}
 	arr[i] = arr[0];
+	while ((*temp1)->next != *head1)
+	{
+		*temp1 = (*temp1)->next;
+	}
+	(*temp1)->next = NULL;
 	temp1 = head1;
 	for (i = 0; i < len1 + len2 - 1; i++)
 	{
