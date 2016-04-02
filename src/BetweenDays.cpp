@@ -28,7 +28,44 @@ struct node{
 	struct node *next;
 };
 
-
+int dates(struct node *date1head, struct node *date2head);
 int between_days(struct node *date1head, struct node *date2head){
+	if (date1head==NULL || date2head==NULL)
 	return -1;
+	int res = dates(date1head, date2head);
+	if (res == 0)
+		return 0;
+	else
+		return res;
+}
+int dates(struct node *date1head, struct node *date2head)
+{
+	int d1 = 0, m1 = 0, y1 = 0, d2 = 0, m2 = 0, y2 = 0;
+	struct node *temp1 = date1head;
+	struct node *temp2 = date2head;
+	d1 = (temp1->data - '0') * 10 + (temp1->next->data - '0');
+	d2 = (temp2->data - '0') * 10 + (temp2->next->data - '0');
+	temp1 = temp1->next->next;
+	temp2 = temp2->next->next;
+	m1 = (temp1->data - '0') * 10 + (temp1->next->data - '0');
+	m2 = (temp2->data - '0') * 10 + (temp2->next->data - '0');
+	temp1 = temp1->next->next;
+	temp2 = temp2->next->next;
+	y1 = (temp1->data - '0') * 1000 + (temp1->next->data - '0') * 100 + (temp1->next->next->data - '0') * 10 + (temp1->next->next->next->data - '0');
+	y2 = (temp2->data - '0') * 1000 + (temp2->next->data - '0') * 100 + (temp2->next->next->data - '0') * 10 + (temp2->next->next->next->data - '0');
+	if (y1 == y2 && m1 == m2 && d1 == d2)
+		return 0;
+	if ((d1 - d2) == 1 || (d2 - d1) == 1)
+		return 0;
+	if (y1 == y2)
+	{
+		if (m1 == m2)
+		{
+			if (d1 > d2)
+				return d1 - d2-1;
+			else
+				return d2 - d1-1;
+		}
+	}
+	
 }
